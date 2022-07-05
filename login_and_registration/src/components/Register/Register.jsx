@@ -1,9 +1,27 @@
-import React from "react";
+import React,{ useState }  from "react";
 import "./Register.css";
 
 export const Register = () => {
+
+  const[user,setUser] = useState({
+    name: "",
+    email:"",
+    password:"",
+    rePassword:""
+  })
+
+  const handelchange = e =>{
+    
+      const {name , value} = e.target
+      setUser({
+        ...user,
+        [name]:value
+      })
+  }
+
    return (
     <>
+    {console.log("User",user)}
         <div className="flex-container">
         <div className="left">
           <h2 className="center">Sign up</h2>
@@ -12,16 +30,19 @@ export const Register = () => {
               <span className="fas fa-user"></span>
               <input
                 type="text"
+                name="name" value={user.name}
                 required
-                placeholder="Name"
+                placeholder="Name" onChange={handelchange}
+
               />
             </div>
             <div className="field space">
               <span className="fas fa-envelope"></span>
               <input
                 type="text"
+                name="email" value={user.email}
                 required
-                placeholder="Email"
+                placeholder="Email" onChange={handelchange}
                 // onChange={(e) => {
                 //   setEmail(e.target.value);
                 // }}
@@ -31,8 +52,10 @@ export const Register = () => {
               <span className="fas fa-lock"></span>
               <input
                 type="password"
+                password="password" value={user.password}
                 required
-                placeholder="password"
+                placeholder="password" onChange={handelchange}
+
                 // onChange={(e) => {
                 //   setPassword(e.target.value);
                 // }}
@@ -42,8 +65,10 @@ export const Register = () => {
               <span className="fas fa-lock"></span>
               <input
                 type="password"
+                name="rePassword" value={user.rePassword}
                 required
-                placeholder="confirm password"
+                placeholder="confirm password" onChange={handelchange}
+
                 // onChange={(e) => {
                 //   setcpassword(e.target.value);
                 // }}

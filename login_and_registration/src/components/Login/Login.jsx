@@ -1,10 +1,28 @@
-import React from "react";
+import React,{useState} from "react";
 import "./Login.css";
 
 export const Login = () => {
+
+  const[user,setUser] = useState({
+    
+    email:"",
+    password:""
+    
+  })
+
+  const handelchange = e =>{
+    
+      const {name , value} = e.target
+      setUser({
+        ...user,
+        [name]:value
+      })
+  }
+
    return (
     <>
         <div className="flex-container">
+        {console.log("ax",user)}
         <div className="left">
           <h2 className="center">Sign in</h2>
           <form >
@@ -14,6 +32,8 @@ export const Login = () => {
                 type="text"
                 required
                 placeholder="Email"
+                name="email" value={user.email}
+                onChange={handelchange}
                 // onChange={(e) => {
                 //   setEmail(e.target.value);
                 // }}
@@ -25,6 +45,8 @@ export const Login = () => {
                 type="password"
                 required
                 placeholder="password"
+                name="password" value={user.password}
+                onChange={handelchange}
                 // onChange={(e) => {
                 //   setPassword(e.target.value);
                 // }}
