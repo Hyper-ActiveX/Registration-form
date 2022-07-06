@@ -1,5 +1,6 @@
 import React,{ useState }  from "react";
 import "./Register.css";
+import axios from "axios"
 
 export const Register = () => {
 
@@ -17,6 +18,18 @@ export const Register = () => {
         ...user,
         [name]:value
       })
+  }
+
+  const registered = () =>{
+    const {name, email, password, rePassword} = user
+
+    if(name && email && password && (password === rePassword)){
+      alert("posted")
+      axios.post("http://localhost:5001/register",user)
+    }else{
+      alert("stupid there is err")
+    }
+    
   }
 
    return (
@@ -52,7 +65,7 @@ export const Register = () => {
               <span className="fas fa-lock"></span>
               <input
                 type="password"
-                password="password" value={user.password}
+                name="password" value={user.password}
                 required
                 placeholder="password" onChange={handelchange}
 
@@ -75,7 +88,7 @@ export const Register = () => {
               />
             </div>
             <div className="space">
-              <button type="submit">Register</button>
+              <button type="submit" onClick={registered}>Register</button>
             </div>
             {/* <!-- who don't have accout they sign up --> */}
             <div className="signup space">
