@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 import "./Login.css";
 import axios from "axios"
+import { Link } from "react-router-dom";
 
 export const Login = () => {
 
@@ -22,7 +23,7 @@ export const Login = () => {
 
   const login = ()=>{
     axios.post("http://localhost:5001/login",user)
-    .then(res => console.log(res))
+    .then(res => alert(res.data.message))
   }
 
    return (
@@ -63,7 +64,7 @@ export const Login = () => {
               <button type="submit" onClick={login}>Login</button>
             </div>
             <div className="signup space">
-              haven't account? 
+              haven't account? <Link to="/register">Register</Link>
             </div>
           </form>
         </div>

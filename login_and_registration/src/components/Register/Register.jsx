@@ -1,6 +1,7 @@
 import React,{ useState }  from "react";
 import "./Register.css";
 import axios from "axios"
+import { Link } from "react-router-dom";
 
 export const Register = () => {
 
@@ -93,7 +94,7 @@ export const Register = () => {
             </div>
             {/* <!-- who don't have accout they sign up --> */}
             <div className="signup space">
-              Do you have account?
+              Do you have account?<Link to="/login">login</Link>
             </div>
           </form>
         </div>
