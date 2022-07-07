@@ -28,24 +28,36 @@ const userKaSchema = new mongoose.Schema({
 })
 
 
-// mpdels
-const userKaModel = new mongoose.model("userKaModel", userKaSchema)
+// mpdels User 
+const userKaModel = new mongoose.model("users", userKaSchema)
 
 
 //Routes
-app.get("/login", (req, res) => {
-    res.send("login karo")
+app.post("/login", (req, res) => {
+    const { email, password } = req.body
+    userKaModel.findOne({email:email}, (err,user)=>{
+        if(user){
+            if(password===user.password){
+                res.send({ message: "Login successfully",user:user})
+            }else{
+                res.send({message: "wrong password"})
+            }
+        }else{
+            res.send({ message: "user not found" })
+        }
+    })
+
 })
 
-app.get("/register", (req, res) => {
+app.post("/register", (req, res) => {
     const { name, email, password } = req.body
     // checking user is already exist or not
-    user.findOne({ email: email }, (err, user) => {
+    userKaModel.findOne({ email: email }, (err, user) => {
         if (user) {
-            res.send({ message: "user already registered" })
+            res.statu(502).send({ message: "user already registered" })
         } else {
             //creating a new user in mongo db with the help of above data
-            const user = new User({
+            const user = new userKaModel({
                 name,
                 email,
                 password
@@ -61,9 +73,6 @@ app.get("/register", (req, res) => {
             })
         }
     })
-
-
-
 })
 
 

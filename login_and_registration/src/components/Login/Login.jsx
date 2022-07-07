@@ -1,5 +1,6 @@
 import React,{useState} from "react";
 import "./Login.css";
+import axios from "axios"
 
 export const Login = () => {
 
@@ -17,6 +18,11 @@ export const Login = () => {
         ...user,
         [name]:value
       })
+  }
+
+  const login = ()=>{
+    axios.post("http://localhost:5001/login",user)
+    .then(res => console.log(res))
   }
 
    return (
@@ -54,7 +60,7 @@ export const Login = () => {
             </div>
 
             <div className="space">
-              <button type="submit">Login</button>
+              <button type="submit" onClick={login}>Login</button>
             </div>
             <div className="signup space">
               haven't account? 
