@@ -24,8 +24,9 @@ export const Register = () => {
     const {name, email, password, rePassword} = user
 
     if(name && email && password && (password === rePassword)){
-      alert("posted")
+      
       axios.post("http://localhost:5001/register",user)
+      .then(res => console.log(res))
     }else{
       alert("stupid there is err")
     }
