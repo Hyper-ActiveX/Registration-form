@@ -2,6 +2,7 @@ import React,{useState} from "react";
 import "./Login.css";
 import axios from "axios"
 import { Link } from "react-router-dom";
+import loginimage from "../images/loginimage.png"
 
 export const Login = () => {
 
@@ -28,6 +29,7 @@ export const Login = () => {
 
    return (
     <>
+    <div className="body1">
         <div className="flex-container">
         {console.log("ax",user)}
         <div className="left">
@@ -70,8 +72,9 @@ export const Login = () => {
         </div>
 
         <div className="right">
-          {/* <img src={Signimg} className="image" alt="" /> */}
+          <img src={loginimage} className="image" alt="" />
         </div>
+      </div>
       </div>
     </>
    );
